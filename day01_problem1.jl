@@ -1,4 +1,4 @@
-f = open("day1input.txt", "r")
+f = open("day01_input.txt", "r")
 s = read(f, String)
 close(f)
 
