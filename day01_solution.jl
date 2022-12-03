@@ -3,13 +3,14 @@ s = read(f, String)
 close(f)
 
 vec = split(s, "\r\n")
-vec[1:10]
-
 
 cals1 = cals2 = cals3 = 0
 curr_cals = 0
 for v in vec
-    println(v)
+    global cals1
+    global cals2
+    global cals3
+    global curr_cals
     if v == ""
         if curr_cals > cals1
             cals1, cals2, cals3 = curr_cals, cals1, cals2

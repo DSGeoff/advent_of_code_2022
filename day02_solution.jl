@@ -1,8 +1,9 @@
 using CSV
 using DataFrames
-using CategoricalArrays
 
+#########################
 # Part One
+#########################
 
 df = CSV.read("day02_input.txt", DataFrame, header=["code1", "code2"])
 
@@ -33,14 +34,14 @@ df.match_part1 = string.(df.actual1, " vs. ", df.actual2_part1)
 
 df.score_part1 = [win_score[row] for row in df.match_part1] .+ [choice_score[row] for row in df.actual2_part1]
 
-df
-
-# Answer 1 is 11449
-sum(df.score_part1)
+# 11449
+println("Part 1 answer: $(sum(df.score_part1))")
 
 
-
+#########################
 # Part Two
+#########################
+
 df.result_part2 = [Dict("X" => "lose", "Y" => "draw", "Z" => "win")[row] for row in df.code2]
 
 df.score_part2 .= 0
@@ -68,5 +69,5 @@ for row in eachrow(df)
     end
 end
 
-# Answer Part 2 is 13187
-sum(df.score_part2)
+# 13187
+println("Part 2 answer: $(sum(df.score_part2))")
