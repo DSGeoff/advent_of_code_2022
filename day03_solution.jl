@@ -1,5 +1,5 @@
 f = open("day03_input.txt", "r")
-s = split(read(f, String), "\r\n")[1:(end-1)]
+s = split(read(f, String), "\r\n")
 close(f)
 
 
