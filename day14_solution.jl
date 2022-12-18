@@ -11,8 +11,6 @@ close(f)
 # Part 1
 ##################################################
 
-m = zeros(Int, 1000, 200)
-
 # Figure out coordinates and which row of input they are in
 df = DataFrame(row_num = Int[], x = Int[], y = Int[])
 
@@ -31,6 +29,11 @@ end
 left_boundary = minimum(df.x)
 right_boundary = maximum(df.x)
 bottom_boundary = maximum(df.y)
+
+# Sand can only rest on top of rock.  And, since sand can only go left or right if
+# it also goes down at the same time, that's also the farthest left or right it could
+# go relative to the starting point
+m = zeros(Int, right_boundary + bottom_boundary + 5, bottom_boundary + 5)
 
 for i in 2:size(df)[1]
     # If the coordinates came from the same row, fill in rocks in all points between
@@ -89,7 +92,7 @@ m2 = copy(m)
 replace!(m2, 2 => 0)
 
 # Add in floor
-m2[1:1000, bottom_boundary + 2] .= 1
+m2[:, bottom_boundary + 2] .= 1
 
 # Rerun sand falling process for Part 2
 sand_count2 = 0
@@ -125,5 +128,4 @@ end
 
 # 25500
 println("Part 2 sand count: $sand_count2")
-
 
